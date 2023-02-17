@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<style class="">
+    .profile-head {
+    transform: translateY(5rem)
+}
+.cover {
+    background-image: url(https://lachat.ru/IMG1/1635/4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+body {
+    background: #654ea3;
+    background: linear-gradient(to right, #e96443, #904e95);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+</style>
+<div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto"> <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head p-4">
+                    <div class="profile mr-3"><img
+                            src="{{ profile.get_photo }}" alt="..." width="50%" height="50%" class="rounded mb-2 img-thumbnail"></div>
+                    <div class="media-body mb-5 text-dark fst-italic"><h4 class="mt-0 mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h4>
+                        <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2 fst-italic"></i>{{ profile.phone_number }}</p></div>
+                </div>
+            </div>
+            {% if request.user == profile.user %}
+            <button type="button" class="btn btn-outline-secondary fst-italic m-4" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Изменить аккаунт</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-start">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel">Изменение аккаунта</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Закрыть"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'edit_account' %}" class="" method="post"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ edit_account.as_p }}
+                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-secondary fst-italic m-4" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2">Изменить профиль</button>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-start">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel2">Изменение профиля</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Закрыть"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'edit_profile' %}" class="" method="post"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ edit_profile.as_p }}
+                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><h5 class="font-weight-bold mb-0 d-block fst-italic">215</h5><small
+                            class="text-muted fst-italic"> <i class="fas fa-image mr-1 fst-italic text-secondary"></i>Изображения</small>
+                    </li>
+                    <li class="list-inline-item"><h5 class="font-weight-bold mb-0 d-block fst-italic">745</h5><small
+                            class="text-muted fst-italic"> <i class="fas fa-user mr- fst-italic text-secondary1"></i>Подписчики</small>
+                    </li>
+                    <li class="list-inline-item"><h5 class="font-weight-bold mb-0 d-block fst-italic">340</h5><small
+                            class="text-muted fst-italic"> <i class="fas fa-user mr-1 fst-italic text-secondary"></i>Подписки</small>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 py-3"><h5 class="mb-0 fst-italic text-secondary p-4">Информация о пользователе</h5>
+                <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600 fst-italic text-secondary p-4">Последняя статья</p>
+                    <h6 class="text-muted f-w-400 fst-italic text-secondary p-4"><a href="" class="{{ recent_articles.get_absolute_url }}">{{ recent_articles.title }}</a></h6>
+                </div>
+                <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600 fst-italic text-secondary p-4">Самая популярная статья</p>
+                    <h6 class="text-muted f-w-400 fst-italic text-secondary p-4"><a href="" class="{{ most_viewed.get_absolute_url }}">{{ most_viewed.title }}</a></h6>
+                </div>
+                <div class="p-4 rounded shadow-sm bg-light"><p class="font-italic mb-0 fst-italic text-secondary">Пока
+                    эти поля не активны.</p>
+                    <p class="font-italic mb-0 fst-italic text-secondary">И заполняются вручную.</p>
+                </div>
+<!--                <div class="py-4 px-4">-->
+<!--                    <div class="d-flex align-items-center justify-content-between mb-3"><h5-->
+<!--                            class="mb-0 fst-italic text-secondary">Фотографии пользователя</h5>-->
+<!--                        <a href="#" class="btn btn-link text-muted"></a></div>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-lg-6 mb-2 pr-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 mb-2 pl-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 pr-lg-1 mb-2"><img-->
+<!--                                src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 pl-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+<!--        <div class="d-flex justify-content-center">-->
+<!--            <div class="col-6">-->
+<!--                {% for article in articles %}-->
+<!--                <div class="card p-4">-->
+<!--                    <div class="d-flex justify-content-between"></div>-->
+<!--                    <h6 class="fst-italic text-secondary">{{ article.title }}</h6>-->
+<!--                    <div class="d-flex">-->
+<!--                        <a href="{{ article.get_absolute_url }}" class="">Посмотреть статью</a>-->
+<!--                    </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+        </div>
+        </div>
+    </div>
+
+    {% endblock main %}
+
+    <!--<a href="#" class="btn btn-outline-secondary fst-italic btn-sm btn-block mx-4">Изменить профиль</a><a href="#" class="btn btn-outline-secondary fst-italic btn-sm btn-block mx-4">Изменить аккаунт</a>-->

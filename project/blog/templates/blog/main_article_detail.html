@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-between">
+    <div class="col-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="">
+                    <a href="" class="h5 text-secondary fst-italic">Основная статья</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <img class="bd-placeholder-img" width="940" height="600"
+                     src="https://taganrogprav.ru/wp-content/uploads/2020/04/11111-1.jpg">
+                <div class="d-flex justify-content-between py-4">
+                    <div class="d-flex justify-content-between">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQitEALNj5Baerz5QXp9UZtL1AJIA9g4cVBmg&usqp=CAU" alt="" class="rounded-pill" width="50" height="50">
+                        <h6 class="text-secondary fst-italic p-2">Неизвестный автор</h6>
+                    </div>
+                    <p class="text-secondary fst-italic">{{ article.created_at }}</p>
+                </div>
+                <h2 class="fst-italic">Популярное и современное рукоделие</h2>
+                <p class="fst-italic">Рукоделие – процесс, созданный из нескольких составляющих. Здесь можно продемонстрировать и знания, и умения, и свободу творчества, и желание украшать этот мир. Виды рукоделия своими руками в домашних условиях только множатся, становятся все интереснее и доступнее. Что нового появилось в шитье и вязании, вышивке и росписи, лепке и бумаготворчестве? Какие картины получаются из шерсти и почему варить мыло так интересно?
+                    Существуют традиционные виды рукодельного творчества, которые нельзя назвать необычными и редкими. Но они формировались столетиями, и ничто не препятствует их дальнейшему развитию, несмотря на консервативность. И все же, если не на смену им, то в дополнение приходит новое поколение видов рукоделия. Они более ориентированы на современность: на новый дизайн и интерьер квартиры (который они будут украшать), на новые эстетические идеалы и запросы.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+
+    </div>
+
+</div>
+
+{% endblock main %}

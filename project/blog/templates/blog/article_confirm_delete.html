@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<form action="" class="" method="post">
+    {% csrf_token %}
+    <p class="fst-italic">Вы действительно хотите удалить статью "{{ article.title }}"?</p>
+    <input type="submit" class="btn btn-outline-danger fst-italic" value="Да, удалить">
+    <a href="{{ article.get_absolute_url }}" class="btn btn-outline-secondary fst-italic">Назад</a>
+
+</form>
+
+{% endblock main %}

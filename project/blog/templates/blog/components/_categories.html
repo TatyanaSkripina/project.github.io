@@ -1,0 +1,10 @@
+{% load blog_tags %}
+<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-secondary navbar-brand" href="{% url 'index' %}"><em>Все статьи</em></a>
+        {% get_categories as categories %}
+        {% for category in categories %}
+        <a class="p-2 text-secondary navbar-brand" href="{% url 'category' category.pk %}"><em>{{ category }}</em></a>
+        {% endfor %}
+    </nav>
+</div>

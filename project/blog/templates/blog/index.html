@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+{% include 'blog/components/_categories.html' %}
+
+<div class="p-4 p-md-5 mb-4 text-secondary rounded"
+     style="font-family:poppins; font-size:20px; font-style:bold; color:#E9967A;">
+    <div class="col-md-6 px-0">
+        <h1 class="display-4 fst-italic">Популярное и современное рукоделие</h1>
+        <p class="lead my-3 fst-italic">Рукоделие – процесс, созданный из нескольких составляющих. Здесь можно
+            продемонстрировать и знания, и умения, и свободу творчества, и желание украшать этот мир.</p>
+        <p class="lead mb-0"><a href="{% url 'main_article' %}" class="text-white fw-bold fst-italic">Продолжить
+            чтение...</a></p>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between">
+    <div class="col-3-md-6 px-4">
+        <div class="col">
+            <div class="position-sticky" style="top: 2rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">Полезная информация</h4>
+                    <p class="mb-0 fst-italic text-secondary">Особых условий для того, чтобы попробовать себя в
+                        рукоделии, не нужно.</p>
+                </div>
+                <div class="p-4 bg-light rounded">
+                    <h4 class="fst-italic">Наши магазины</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li class="fst-italic text-secondary"><a href="https://www.google.ru/maps/place/PROWEB/@41.2650498,69.2001372,17z/data=!3m1!4b1!4m5!3m4!1s0x38ae8a1b0c46af65:0x82d1d0a1630a1413!8m2!3d41.2650513!4d69.2001327" class=""><i class="bi bi-arrow-right"></i> г. Ташкент, Чиланзарский район, проспект Бунёдкор, ул.
+                            Наккошлык.
+                        </a></li>
+                        <li class="fst-italic text-secondary"><a href="https://yandex.uz/maps/org/165821824874/?ll=69.274631%2C41.297004&mode=search&sctx=ZAAAAAgBEAAaKAoSCeqw4zuIUVFAETeD6N79pURAEhIJXUvkRt93ez8R4sb6AV2SZz8oCjgAQKGfBkgBagJ1ep0BzcxMPaABAKgBAL0BbSEN7cIBBoa19u3IAeoBAPIBAPgBAIICBnByb3dlYooCAA%3D%3D&sll=69.274631%2C41.297004&sspn=0.004677%2C0.002007&text=proweb&utm_source=main_stripe_big&z=18" class=""><i class="bi bi-arrow-right"></i> г. Ташкент, Мирабадский район, улица Айбека, дом 16.
+                        </a></li>
+                        <li class="fst-italic text-secondary"><a href="https://yandex.ru/map-widget/v1/?um=constructor%3A92653d7c6da596486242ee12f0d803023490a888419335284db943780b10f61a&source=constructor" class=""><i class="bi bi-arrow-right"></i> г. Ташкент, Мирабадский район, улица Айбека, дом 12.
+                        </a></li>
+                    </ol>
+                </div>
+                <div class="p-4 bg-light rounded my-3">
+                    <h4 class="fst-italic">Мы в соцсетях</h4>
+                    <ol class="list-unstyled">
+                        <li class="fst-italic text-secondary"><a href="https://krot.info/uploads/posts/2022-03/1646140733_5-krot-info-p-kot-mem-smeshnie-foto-5.jpg">GitHub</a></li>
+                        <li class="fst-italic text-secondary"><a href="https://www.murcat.ru/mem/db/admin/foto/1605805833.jpg">Twitter</a></li>
+                        <li class="fst-italic text-secondary"><a href="https://cs4.pikabu.ru/images/big_size_comm/2014-07_4/14056154998418.jpg">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        {% include 'blog/components/_card.html' %}
+    </div>
+</div>
+
+{% endblock main %}
+
+

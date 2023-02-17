@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-center p-4">
+    <div class="col-6">
+        <div class="card">
+            <h3 class="text-center fst-italic text-secondary">{{ title }}</h3>
+            <div class="card-body">
+                <form action="" class="" method="post">
+                    {% csrf_token %}
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.username }}
+                        <label for="{{ form.username.id_for_label }}" class="form-label fst-italic">
+                            Имя пользователя
+                        </label>
+                    </div>
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.first_name }}
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label fst-italic">
+                            Ваше имя
+                        </label>
+                    </div>
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.last_name }}
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label fst-italic">
+                            Ваша фамилия
+                        </label>
+                    </div>
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.email }}
+                        <label for="{{ form.email.id_for_label }}" class="form-label fst-italic">
+                            Ваша почта
+                        </label>
+                    </div>
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.password1 }}
+                        <label for="{{ form.password1.id_for_label }}" class="form-label fst-italic">
+                            Пароль
+                        </label>
+                    </div>
+                    <div class="form-floating flex-fill mb-4">
+                        {{ form.password2 }}
+                        <label for="{{ form.password2.id_for_label }}" class="form-label fst-italic">
+                            Подтвердите пароль
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-success fst-italic" type="submit">Зарегистрироваться</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0 fst-italic text-secondary">
+                            Нет аккаунта?
+                            <a href="" class="link-primary fst-italic">Войти</a>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

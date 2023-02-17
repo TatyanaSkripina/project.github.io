@@ -1,0 +1,25 @@
+<div class="row mb-2">
+    {% for article in articles %}
+    <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static bg-light">
+                <strong class="d-inline-block mb-2 text-secondary fst-italic">Категория: {{ article.category }}</strong>
+                <h3 class="mb-0 fst-italic">{{ article.title }}</h3>
+                <div class="mb-1 text-muted fst-italic">{{ article.created_at }}</div>
+                <p class="card-text mb-auto fst-italic">{{ article.content|truncatechars:20 }}</p>
+                <a href="{% url 'article' article.pk %}" class="stretched-link text-secondary fst-italic">Продолжить чтение</a>
+                <p class="card-text mb-auto text-secondary fst-italic">Просмотры: {{ article.views }}</p>
+            </div>
+            <div class="col-auto d-none d-lg-block bg-light">
+                {% if article.photo %}
+                <img class="bd-placeholder-img" width="200" height="250"
+                     src="{{ article.photo.url }}">
+                {% else %}
+                <img class="bd-placeholder-img" width="100%" height="100%"
+                     src="https://i.pinimg.com/originals/f8/00/7c/f8007c28991b10adafa9a8003e28cb3d.png">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-between">
+    <div class="col-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="">
+                    <a href="" class="h5 text-secondary fst-italic">Категория: {{ article.category }}</a>
+                </div>
+                <div class="d-flex justify-content-between">
+                    {% if article.author == request.user %}
+                    <a href="{% url 'update' article.pk %}" class="btn btn-outline-secondary mx-1 fst-italic">Изменить</a>
+                    <a href="{% url 'delete' article.pk %}" class="btn btn-outline-danger mx-1 fst-italic">Удалить</a>
+                    {% endif %}
+                    <a href="{% url 'index' %}" class="btn btn-outline-success mx-1 fst-italic">Назад</a>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if article.photo %}
+                <img class="bd-placeholder-img"
+                     src="{{ article.photo.url }}">
+                {% else %}
+                <img class="bd-placeholder-img" width="200" height="250"
+                     src="https://i.pinimg.com/originals/f8/00/7c/f8007c28991b10adafa9a8003e28cb3d.png">
+                {% endif %}
+                <div class="d-flex justify-content-between py-4">
+                    <div class="d-flex justify-content-between">
+                        <img src="{{ article.author.profile.get_photo }}"
+                             alt="" class="rounded-pill" width="50" height="50">
+                        <h6 class="text-secondary fst-italic p-2">Автор статьи:
+                            <a href="{% url 'profile' article.author.pk %}" class="text-secondary">
+                            {{ article.author }}</h6>
+                            </a>
+                    </div>
+                    <p class="text-secondary fst-italic">{{ article.created_at }}</p>
+                </div>
+                <h2 class="fst-italic">{{ article.title }}</h2>
+                <p class="fst-italic">{{ article.content|linebreaks }}</p>
+                <span class="text-secondary fst-italic">Просмотры: {{ article.views }}</span>
+            </div>
+        </div>
+        <div class="card mt-4 p-4 fst-italic">
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'save_comment' article.pk %}" class="" method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button class="btn btn-outline-secondary fst-italic" type="submit">Оставить комментарий</button>
+            </form>
+            {% else %}
+            <h5 class="fst-italic text-secondary">Чтобы оставить комментарий к статье, необходимо <a data-bs-toggle="modal" href="#exampleModalToggle">войти в аккаунт</a></h5>
+            {% include 'blog/login.html' %}
+            {% endif %}
+        </div>
+        {% for comment in comments %}
+        <div class="card mt-4 p-4">
+            <h4 class="fst-italic">{{ comment.user.username }}</h4>
+            <p class="small fst-italic text-secondary">{{ comment.created_at }}</p>
+            <p class="fst-italic">{{ comment.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-3">
+
+    </div>
+
+</div>
+
+{% endblock main %}
